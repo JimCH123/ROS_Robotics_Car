@@ -4,6 +4,7 @@
 ![Python](https://img.shields.io/badge/Python-rospy-3776AB?logo=python&logoColor=white)
 ![Robot](https://img.shields.io/badge/Robot-TurtleBot3-orange)
 ![Build](https://img.shields.io/badge/build-catkin-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 This is the course project for **ROS Basics in 5 Days** (The Construct). It is a ROS 1 package
 that makes a **TurtleBot3** robot do three things on its own:
@@ -37,6 +38,7 @@ in The Construct's *Real Robot Lab* in Barcelona, Spain, which you connect to re
 - [From Simulation to the Real Robot](#from-simulation-to-the-real-robot)
 - [Known Limitations and Future Work](#known-limitations-and-future-work)
 - [Acknowledgements](#acknowledgements)
+- [License](#license)
 
 ---
 
@@ -437,7 +439,6 @@ Things to keep in mind on the real robot:
 | Parameters | Hard-coded | Expose as ROS params (`rospy.get_param`) in the launch file |
 | Action server | No preemption/cancel handling; reads `self.x` before the first `/odom` arrives could fail | Check `is_preempt_requested()`; wait for the first odometry message |
 | Lap detection | Position-only, 0.1 m radius | Add a heading check and a minimum lap distance based on the arena size |
-| `package.xml` | License is still `TODO` | Choose a license |
 
 ---
 
@@ -450,3 +451,7 @@ Things to keep in mind on the real robot:
 ## Author
 
 **Jim Chen** ([@JimCH123](https://github.com/JimCH123))
+
+## License
+
+This project is released under the [MIT License](LICENSE).
