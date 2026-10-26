@@ -136,8 +136,7 @@ ROS_Robotics_Car/                       # catkin package "ros_project"
 ├── scripts/
 │   ├── service_server_find_wall.py     # Section 2: /find_wall service server
 │   ├── action_server_record_odom.py    # Section 3: /record_odom action server
-│   ├── sub_laser.py                    # Section 1: wall follower (+ service & action clients)
-│   └── sub_laser2.py                   # alternative wall follower with a gentler left correction
+│   └── sub_laser.py                    # Section 1: wall follower (+ service & action clients)
 └── launch/
     ├── main.launch                     # full project: service + action server + wall follower
     ├── sub_laser.launch                # wall follower only
@@ -309,7 +308,7 @@ catkin_make
 source devel/setup.bash
 ```
 
-> In the repository the scripts are stored **without** the executable bit. If you skip step 2,
+> Step 2 is required: the scripts must be executable for `rosrun` / `roslaunch`. If you skip it,
 > `roslaunch` fails with *"Cannot locate node of type …"* or *"… is not executable"*.
 
 ---
@@ -398,16 +397,11 @@ All values are currently hard-coded as default function arguments.
 | Corner turn rate | +0.5 rad/s | `sub_laser.py` → `turning_left()` |
 | Desired wall band (right) | 0.2 – 0.3 m | `sub_laser.py` → `move_robot()` |
 | Steer-right correction | −0.1 rad/s | `sub_laser.py` → `detect_wall_right()` |
-| Steer-left correction | +0.2 rad/s (`sub_laser2.py`: +0.1) | `detect_wall_left()` |
+| Steer-left correction | +0.2 rad/s | `sub_laser.py` → `detect_wall_left()` |
 | Find-wall rotate speed | ±0.3 rad/s | `service_server_find_wall.py` |
 | Find-wall stop distance | 0.3 m | `service_server_find_wall.py` → `moving_to_wall()` |
 | Odometry sample rate | 1 Hz | `action_server_record_odom.py` |
 | Lap-complete criteria | > 0.5 m travelled & < 0.1 m from start | `action_server_record_odom.py` |
-
-`sub_laser2.py` is the same as `sub_laser.py` except for a **gentler steer-left correction (0.1 rad/s)**.
-It is useful where the stronger correction makes the robot zig-zag, for example when moving between the
-simulation and the real robot. To use it, change `type="sub_laser.py"` to `type="sub_laser2.py"` in
-`main.launch`.
 
 ---
 
@@ -443,8 +437,7 @@ Things to keep in mind on the real robot:
 | Parameters | Hard-coded | Expose as ROS params (`rospy.get_param`) in the launch file |
 | Action server | No preemption/cancel handling; reads `self.x` before the first `/odom` arrives could fail | Check `is_preempt_requested()`; wait for the first odometry message |
 | Lap detection | Position-only, 0.1 m radius | Add a heading check and a minimum lap distance based on the arena size |
-| `package.xml` | `actionlibs` typo; `sensor_msgs`, `nav_msgs`, `tf` not declared; license `TODO` | Fix the dependencies so `rosdep install` works; choose a license |
-| Scripts | Not stored as executable in git | `git update-index --chmod=+x scripts/*.py` |
+| `package.xml` | License is still `TODO` | Choose a license |
 
 ---
 
