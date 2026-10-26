@@ -1,0 +1,8 @@
+<launch>
+    <node pkg = "ros_project" type = "service_server_find_wall.py" name = "service_server_find_wall_node" output = "screen">
+    </node>
+    <node pkg = "ros_project" type = "action_server_record_odom.py" name = "action_server_record_odom_node" output = "screen">
+    </node>
+    <node pkg = "ros_project" type = "sub_laser.py" name = "sub_laser_node" output = "screen">
+    </node>
+</launch>

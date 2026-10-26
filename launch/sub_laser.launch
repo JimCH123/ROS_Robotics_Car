@@ -1,0 +1,4 @@
+<launch>
+    <node pkg = "ros_project" type = "sub_laser.py" name = "sub_laser_node" output = "screen">
+    </node>
+</launch>

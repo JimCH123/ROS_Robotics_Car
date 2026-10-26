@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find ros_project)/launch/sub_laser.launch"/>
+    <node pkg = "ros_project" type = "service_server_find_wall.py" name = "service_server_find_wall_node" output = "screen">
+    </node>
+</launch>
