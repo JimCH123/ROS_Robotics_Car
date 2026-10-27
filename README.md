@@ -14,6 +14,10 @@ that makes a **TurtleBot3** robot do three things on its own:
 3. **Record its odometry** while it drives, report the distance travelled so far, and **stop after one
    full lap** (a ROS **action**).
 
+
+https://github.com/user-attachments/assets/9baad3a0-a4dd-4229-ad26-7f4d69f1eef3
+
+
 The code was developed and tested in the Gazebo simulation first. It was then run on the real TurtleBot3
 in The Construct's *Real Robot Lab* in Barcelona, Spain, which you connect to remotely.
 
